@@ -18,8 +18,9 @@ for(let contador = 1; contador<=10; contador+=2){
 
 //Micro-desafios 3 tabuada de 5
 
-// let contador = 0
-// let tabuada = 7
-// for (contador; contador<=10;contador++){
-//     console.log(contador)
-// }
+for (i=1;i<=10;i++){
+    console.log(`Tabuada do ${i}`)
+    for (j=0;j<=10;j++){
+        console.log(i*j)
+    }
+}
