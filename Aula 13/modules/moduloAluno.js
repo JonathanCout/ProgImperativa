@@ -21,10 +21,10 @@ class aluno {
 } 
 
 const estudantes = [ 
-    new aluno ('Joaquim',10,[7,8,9,10]),
-    new aluno ('Aluno2',3,[4,6,7,3])
+    new aluno ('joaquim',10,[7,8,9,10]),
+    new aluno ('aluno2',3,[4,6,7,3]),
+    new aluno ('aluno3',1,[5,1,3,2])
 ]
-
 
 // console.log(joaquim.calcularMedia()) */
 module.exports = {aluno,estudantes}
