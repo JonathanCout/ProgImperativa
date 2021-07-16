@@ -11,7 +11,7 @@ class aluno {
 
         this.calcularMedia = function () {
             const resultado = (this.notas.reduce((sum,n) => sum+=n, 0))/this.notas.length
-            return `O aluno ${nome} possui uma média de ${resultado}`
+            return resultado
         }
         this.adicFaltas = function (){
             this.faltas++
@@ -20,14 +20,8 @@ class aluno {
     }
 } 
 
-const estudantes = [ 
-    new aluno ('joaquim',10,[7,8,9,10]),
-    new aluno ('aluno2',3,[4,6,7,3]),
-    new aluno ('aluno3',1,[5,1,3,2])
-]
-
 // console.log(joaquim.calcularMedia()) */
-module.exports = {aluno,estudantes}
+module.exports = aluno
 
 /* Parte 2 - Nosso objeto aluno terá o método calcularMedia que retorna a média de suas notas. 
 Também terá um método chamado faltas, que simplesmente aumenta o número de faltas em 1. */
