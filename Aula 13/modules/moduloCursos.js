@@ -10,40 +10,54 @@ o aluno tem que ter uma média igual ou acima da nota de aprovação  e ter meno
 Se tiver a mesma quantidade, tem que estar 10% acima da nota de aprovação. */
 
 // Importação da classe aluno e array estudantes
-let alunosImp = require('./moduloAluno')
+let aluno = require('./moduloAluno')
+
 
 // classe curso 
 class curso {
-    constructor(titulo,notaAprov,maxFaltas) {  
+    constructor(titulo, notaAprov, maxFaltas) {
 
-        this.titulo = titulo 
-        this.notaAprov = notaAprov
+        this.titulo = titulo
+        this.notaAprov = notaAprov.toFixed(2)
         this.maxFaltas = maxFaltas
         this.listaAluno = []
 
-// método para adicionar a lista de alunos de estudantes no listaAluno
+        // método para adicionar a lista de alunos de estudantes no listaAluno
         this.adicAluno = function () {
-            for (let i = 0; i < alunosImp.estudantes.length ; i++) {
-                this.listaAluno.push(alunosImp.estudantes[i].nome)   
-            }  
+            for (let i = 0; i < estudantes.length; i++) {
+                this.listaAluno.push(estudantes[i].nome)
+            }
         }
-/* método para checar a aprovação dos alunos. DEU RUIM!
-tentar entender como linkar dois objetos de arrays que envolvem indices */
+        /* método para checar a aprovação dos alunos. DEU RUIM!
+        tentar entender como linkar dois objetos de arrays que envolvem indices */
         this.aprovacao = function (nomeAluno) {
-            switch(nomeAluno.tolowerCase()){
+            const alunoEscolhido = estudantes.find(aluno => aluno.nome === nomeAluno.toLowerCase())
+            if (!alunoEscolhido) {
+                return 'O aluno escolhido não está matriculado neste curso'
+            } else {
+                let nome = alunoEscolhido.nome
+                let notas = alunoEscolhido.calcularMedia()
+                let faltas = alunoEscolhido.faltas
 
+                if (faltas > this.maxFaltas) {
+                    return `${nome}, você terminou o curso com ${faltas} faltas e ultrapassou o limite de ${this.maxFaltas} faltas. Por isso, você está reprovado(a)`
+                } else if (faltas = this.maxFaltas && notas >= this.notaAprov * 1.1) {
+                    return `${nome}, meus parabéns! Você está aprovado(a)`
+                } else if (faltas < this.maxFaltas && notas >= this.notaAprov) {
+                    return `${nome}, meus parabens! Você está aprovado(a)`
+                } else { return `${nome}, você terminou com uma média de ${notas.toFixed(2)} e não alcançou o grau mínimo (${this.notaAprov}) e infelizmente está reprovado(a)` }
             }
         }
     }
 }
 
 // Criação dos cursos
-const cursosLista = [
-    new curso ('CTD',7,5),
-    new curso ('CTD2',6,3)
+const estudantes = [
+    new aluno('joaquim', 10, [7, 8, 9, 10]),
+    new aluno('aluno2', 3, [10, 8, 7, 6]),
+    new aluno('aluno3', 1, [5, 1, 3, 2])
 ]
 
-cursosLista[1].adicAluno()
-console.log(`Lista de alunos do ${cursosLista[1].titulo}: ${cursosLista[1].listaAluno.join(', ')}`)
-// Exportação do objeto curso com seus métodos e da lista de cursos
-module.export={curso,cursosLista}
+const cursos = new curso('CTD', 7, 3)
+
+console.log(cursos.aprovacao('Joaquim'))
