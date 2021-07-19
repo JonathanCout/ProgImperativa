@@ -14,7 +14,7 @@ let aluno = require('./moduloAluno')
 
 
 // classe curso 
-class curso {
+class Curso {
     constructor(titulo, notaAprov, maxFaltas) {
 
         this.titulo = titulo
@@ -24,14 +24,14 @@ class curso {
 
         // método para adicionar a lista de alunos de estudantes no listaAluno
         this.adicAluno = function () {
-            for (let i = 0; i < estudantes.length; i++) {
-                this.listaAluno.push(estudantes[i].nome)
+            for (let i = 0; i < aluno.estudantes.length; i++) {
+                this.listaAluno.push(aluno.estudantes[i].nome)
             }
         }
         /* método para checar a aprovação dos alunos. DEU RUIM!
         tentar entender como linkar dois objetos de arrays que envolvem indices */
         this.aprovacao = function (nomeAluno) {
-            const alunoEscolhido = estudantes.find(aluno => aluno.nome === nomeAluno.toLowerCase())
+            const alunoEscolhido = aluno.estudantes.find(aluno => aluno.nome === nomeAluno.toLowerCase())
             if (!alunoEscolhido) {
                 return 'O aluno escolhido não está matriculado neste curso'
             } else {
@@ -51,13 +51,20 @@ class curso {
     }
 }
 
-// Criação dos cursos
-const estudantes = [
-    new aluno('joaquim', 10, [7, 8, 9, 10]),
-    new aluno('aluno2', 3, [10, 8, 7, 6]),
-    new aluno('aluno3', 1, [5, 1, 3, 2])
+// Lista dos cursos
+const cursos = [
+    new Curso('CTD', 7, 3),
+    new Curso('Javascript',8,1)
 ]
+// Método para encontrar o curso certo e verificar quanto a aprovação do aluno
+console.log(cursos.find(curso => curso.titulo == 'Javascript').aprovacao('aluno2'))
 
-const cursos = new curso('CTD', 7, 3)
+// Método para encontrar o aluno correto e adicionar uma falta à lista dele
+console.log(aluno.estudantes.find(aluno => aluno.nome == 'joaquim').adicFaltas())
 
-console.log(cursos.aprovacao('Joaquim'))
+// Método para encontrar o aluno correto e calcular a sua média
+console.log(aluno.estudantes.find(aluno => aluno.nome == 'joaquim').calcularMedia())
+
+/* Explicação: Tanto o 'cursos' quanto o 'estudantes' são arrays que, dentro desses arrays possuem objetos das classes
+Curso e Aluno respectivamente. Portanto, é necessário encontrar o objeto certo que queremos trabalhar ao fazer qualquer método.
+Por isso a necessidade do '.find', ele procura dentro do array o objeto cujo titulo/nome é igual ao indicado e daí realiza o método correto */
