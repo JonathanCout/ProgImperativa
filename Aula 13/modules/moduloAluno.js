@@ -20,13 +20,14 @@ class Aluno {
     }
 } 
 
+// Criaçao da lista de alunos
 const estudantes = [
     new Aluno('joaquim', 10, [7, 8, 9, 10]),
     new Aluno('aluno2', 3, [10, 8, 7, 6]),
     new Aluno('aluno3', 1, [5, 1, 3, 2])
 ]
 
-console.log(estudantes.find(estudante => estudante.nome == 'joaquim').calcularMedia())
+// console.log(estudantes.find(estudante => estudante.nome == 'joaquim').calcularMedia())
 
 module.exports = {Aluno,estudantes}
 
