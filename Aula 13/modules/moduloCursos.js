@@ -56,6 +56,11 @@ const cursos = [
     new Curso('CTD', 7, 3),
     new Curso('Javascript',8,1)
 ]
+
+// Método para adicionar alunos ao curso CTD especificamente 
+cursos.find(curso => curso.titulo == 'CTD').adicAluno()
+console.log(cursos.find(curso => curso.titulo == 'CTD').listaAluno.join(', '))
+
 // Método para encontrar o curso certo e verificar quanto a aprovação do aluno
 console.log(cursos.find(curso => curso.titulo == 'Javascript').aprovacao('aluno2'))
 
